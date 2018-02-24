@@ -1,0 +1,46 @@
+    Private Function getAllScores() As Dictionary(Of Integer, Integer) 'returns a dictionary of integers where the key is an unique identifier and the and the value is a score
+	'The purpose of this function is to sort the dictionary by the values and then shuffle the dictionary where the values are equal to each other.
+	'say you have (1, 33), (2, (34)), (3,(33)), (4,(30))
+	'It would first sort, (4,30), (1,33), (3,33), (2,34)
+	'And then shuffle the identical values. (4,30), (3,33) (1,33), (2,34)
+        Dim dicall As Dictionary(Of Integer, Integer) = New Dictionary(Of Integer, Integer)
+        For x As Integer = 0 To CoachList2.Count - 1
+            Dim T As Team = CoachList2(x)
+            dicall.Add(x, T.TotalScore1)
+        Next
+        Dim sorted = From i In dicall Order By i.Value Ascending Select i
+        Dim dicone As Dictionary(Of Integer, Integer) = New Dictionary(Of Integer, Integer)
+        For Each n In sorted
+            dicone.Add(n.Key, n.Value)
+        Next
+        Dim val As Integer = 0
+        Dim onatrend As Boolean = False
+        Dim dictemp As Dictionary(Of Integer, Integer) = New Dictionary(Of Integer, Integer)
+        Dim dicdusto As Dictionary(Of Integer, Integer) = New Dictionary(Of Integer, Integer)
+
+        Dim c As Integer = 0
+        For c = 0 To dicone.Count
+            Dim Streak As Integer = 0
+            If c + 1 < dicone.Count Then
+                While dicone.Item(dicone.Keys.ElementAt(c)) = dicone.Item(dicone.Keys.ElementAt(c + 1))
+                    dicdusto.Add(dicone.Keys.ElementAt(c), dicone.Item(dicone.Keys.ElementAt(c)))
+                    Streak = Streak + 1
+                    c = c + 1
+                    If c + 1 = dicone.Count Then
+                        dicdusto.Add(dicone.Keys.ElementAt(c), dicone.Item(dicone.Keys.ElementAt(c)))
+                        Streak = Streak + 1
+                        Exit While
+                    End If
+                End While
+                If Streak > 0 Then
+                    dicdusto = Shuffle2(dicdusto)
+                    For Each m In dicdusto
+                        dictemp.Add(m.Key, m.Value)
+                    Next
+                Else
+                    dictemp.Add(dicone.Keys.ElementAt(c), dicone.Item(dicone.Keys.ElementAt(c)))
+                End If
+            End If
+            dicdusto.Clear()
+        Next c
+        Return dictemp

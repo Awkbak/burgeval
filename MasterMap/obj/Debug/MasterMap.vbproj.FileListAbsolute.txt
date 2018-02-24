@@ -1,0 +1,11 @@
+D:\VSPath2017\MasterMap\MasterMap\bin\Debug\MasterMap.exe.config
+D:\VSPath2017\MasterMap\MasterMap\bin\Debug\MasterMap.exe
+D:\VSPath2017\MasterMap\MasterMap\bin\Debug\MasterMap.pdb
+D:\VSPath2017\MasterMap\MasterMap\bin\Debug\MasterMap.xml
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.vbprojResolveAssemblyReference.cache
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.Form1.resources
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.Resources.resources
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.vbproj.GenerateResource.Cache
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.exe
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.xml
+D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.pdb
