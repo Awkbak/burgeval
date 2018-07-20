@@ -8,3 +8,13 @@ D:\VSPath2017\MasterMap\MasterMap\obj\Release\MasterMap.vbproj.GenerateResource.
 D:\VSPath2017\MasterMap\MasterMap\obj\Release\MasterMap.exe
 D:\VSPath2017\MasterMap\MasterMap\obj\Release\MasterMap.xml
 D:\VSPath2017\MasterMap\MasterMap\obj\Release\MasterMap.pdb
+D:\burgeval\MasterMap\bin\Release\MasterMap.exe.config
+D:\burgeval\MasterMap\bin\Release\MasterMap.exe
+D:\burgeval\MasterMap\bin\Release\MasterMap.pdb
+D:\burgeval\MasterMap\bin\Release\MasterMap.xml
+D:\burgeval\MasterMap\obj\Release\MasterMap.Form1.resources
+D:\burgeval\MasterMap\obj\Release\MasterMap.Resources.resources
+D:\burgeval\MasterMap\obj\Release\MasterMap.vbproj.GenerateResource.Cache
+D:\burgeval\MasterMap\obj\Release\MasterMap.exe
+D:\burgeval\MasterMap\obj\Release\MasterMap.xml
+D:\burgeval\MasterMap\obj\Release\MasterMap.pdb

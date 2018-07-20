@@ -156,49 +156,57 @@ Public Class Form1
     End Function
 
     Private Sub btn_lockin_Click(sender As Object, e As EventArgs) Handles btn_lockin.Click
+
         Dim filename As String = Application.StartupPath & "\" & CoachList1(CoachIndex) & ".csv"
 
         Dim selectnum As Integer = lst_players_available.SelectedIndices(0)
         Dim sumthisup As ListViewItem = lst_players_available.Items(selectnum)
-        lst_players_available.Items.RemoveAt(selectnum)
+
         Dim a As String = ""
         Dim b As String = ""
         Dim c As String = ""
         Dim d As Integer = 0
         Dim ee As String = ""
+        Dim thick As String
         If box_divisions.SelectedItem.ToString = "U18" Then
             a = sumthisup.SubItems(0).Text
             b = sumthisup.SubItems(2).Text
             c = sumthisup.SubItems(3).Text
             d = Integer.Parse(sumthisup.SubItems(4).Text)
             ee = sumthisup.SubItems(5).Text
+            thick = MsgBox("Practice Days: " & ee & " Are you sure?", MsgBoxStyle.YesNo)
         Else
             a = sumthisup.SubItems(0).Text
             b = sumthisup.SubItems(1).Text
             c = sumthisup.SubItems(2).Text
             d = Integer.Parse(sumthisup.SubItems(3).Text)
             ee = sumthisup.SubItems(4).Text
+            thick = MsgBox("Practice Days: " & ee & " Are you sure?", MsgBoxStyle.YesNo)
         End If
-        Dim PL As Player = (New Player(a, b, c, d, ee))
-        CreateCSVFile(filename, PL.ReturnAll())
-        CType(CoachList2(CoachIndex), Team).AddPlayer(PL)
+        If thick = vbYes Then
+            lst_players_available.Items.RemoveAt(selectnum)
+            Dim PL As Player = (New Player(a, b, c, d, ee))
+            CreateCSVFile(filename, PL.ReturnAll())
+            CType(CoachList2(CoachIndex), Team).AddPlayer(PL)
 
-        If CoachCounter = CoachList2.Count - 1 Then
-            CoachCounter = 0
-            CoachPickup = getAllScores()
-        Else
-            CoachCounter = CoachCounter + 1
+            If CoachCounter = CoachList2.Count - 1 Then
+                CoachCounter = 0
+                CoachPickup = getAllScores()
+            Else
+                CoachCounter = CoachCounter + 1
+            End If
+            CoachIndex = CoachPickup.Keys.ElementAt(CoachCounter)
+            lbl_picking.Text = "Now Picking: " & CType(CoachList2(CoachIndex), Team).Coach1
+            Dim Textne As String = ""
+            Dim txt2 As String = ""
+            For Each x As Team In CoachList2
+                Textne = Textne & x.Coach1 & ": " & x.TotalScore1 & vbNewLine
+                txt2 = txt2 & "Players: " & x.GetPlayerList.Count & vbNewLine
+            Next
+            lbl_scores.Text = Textne
+            lbl_plycount.Text = txt2
         End If
-        CoachIndex = CoachPickup.Keys.ElementAt(CoachCounter)
-        lbl_picking.Text = "Now Picking: " & CType(CoachList2(CoachIndex), Team).Coach1
-        Dim Textne As String = ""
-        Dim txt2 As String = ""
-        For Each x As Team In CoachList2
-            Textne = Textne & x.Coach1 & ": " & x.TotalScore1 & vbNewLine
-            txt2 = txt2 & "Players: " & x.GetPlayerList.Count & vbNewLine
-        Next
-        lbl_scores.Text = Textne
-        lbl_plycount.Text = txt2
+
     End Sub
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
@@ -270,6 +278,7 @@ Public Class Form1
         lst_players_available.Items.AddRange(masterlist)
         If box_divisions.SelectedItem.ToString = "U18" Then
             lst_players_available.ListViewItemSorter = New ListViewItemComparer(4, SortOrder.Descending)
+            lst_players_available.ListViewItemSorter = New ListViewItemComparer(1, SortOrder.Ascending)
         Else
             lst_players_available.ListViewItemSorter = New ListViewItemComparer(3, SortOrder.Descending)
         End If

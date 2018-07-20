@@ -9,3 +9,14 @@ D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.vbproj.GenerateResource.Ca
 D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.exe
 D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.xml
 D:\VSPath2017\MasterMap\MasterMap\obj\Debug\MasterMap.pdb
+D:\burgeval\MasterMap\bin\Debug\MasterMap.exe.config
+D:\burgeval\MasterMap\bin\Debug\MasterMap.exe
+D:\burgeval\MasterMap\bin\Debug\MasterMap.pdb
+D:\burgeval\MasterMap\bin\Debug\MasterMap.xml
+D:\burgeval\MasterMap\obj\Debug\MasterMap.vbprojResolveAssemblyReference.cache
+D:\burgeval\MasterMap\obj\Debug\MasterMap.Form1.resources
+D:\burgeval\MasterMap\obj\Debug\MasterMap.Resources.resources
+D:\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.GenerateResource.Cache
+D:\burgeval\MasterMap\obj\Debug\MasterMap.exe
+D:\burgeval\MasterMap\obj\Debug\MasterMap.xml
+D:\burgeval\MasterMap\obj\Debug\MasterMap.pdb
