@@ -1,17 +1,19 @@
 ﻿Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.ApplicationServices
 Public Class Form1
-    Dim U11GFile As String = Application.StartupPath & "\" & "U11G.csv"
+    Dim DivisionFile As String = Application.StartupPath & "\" & "U11G.csv"
 
-    Dim U11GList As ArrayList
+    Dim DivisionList As ArrayList
     Dim afile As TextFieldParser
     Dim CoachList1 As ArrayList
-
     Dim CoachList2 As ArrayList
+    Dim Coachlistpath As String
+
     Dim CoachIndex As Integer
     Dim CoachCounter As Integer
     Private SavePath As String = Application.StartupPath & "\" & "U11GDone.csv"
     Dim CoachPickup As Dictionary(Of Integer, Integer)
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -43,11 +45,11 @@ Public Class Form1
         Return newdict
     End Function
     Private Sub GetPlayers()
-        afile = New TextFieldParser(U11GFile)
+        afile = New TextFieldParser(DivisionFile)
         afile.TextFieldType = FieldType.Delimited
         afile.Delimiters = New String() {","}
         afile.HasFieldsEnclosedInQuotes = True
-        U11GList = New ArrayList()
+        DivisionList = New ArrayList()
         Dim CurrPlayer As Player
         Dim Curr(13) As String
         Dim ouch(5) As Integer
@@ -56,7 +58,7 @@ Public Class Form1
                 Curr = afile.ReadFields
                 ouch = {Integer.Parse(Curr(3)), Integer.Parse(Curr(4)), Integer.Parse(Curr(5)), Integer.Parse(Curr(6)), Integer.Parse(Curr(7))}
                 CurrPlayer = New Player(Curr(0), Curr(1), Curr(2), ouch, Integer.Parse(Curr(8)), Curr(9), Curr(10), Curr(11), Curr(12))
-                U11GList.Add(CurrPlayer)
+                DivisionList.Add(CurrPlayer)
             Catch ex As FileIO.MalformedLineException
                 MsgBox("Unexpected Error Occured, Contact Admin for support")
                 Stop
@@ -65,11 +67,11 @@ Public Class Form1
         afile.Close()
     End Sub
     Private Sub GetPlayersU18()
-        afile = New TextFieldParser(U11GFile)
+        afile = New TextFieldParser(DivisionFile)
         afile.TextFieldType = FieldType.Delimited
         afile.Delimiters = New String() {","}
         afile.HasFieldsEnclosedInQuotes = True
-        U11GList = New ArrayList()
+        DivisionList = New ArrayList()
         Dim CurrPlayer As Player
         Dim Curr(14) As String
         Dim ouch(5) As Integer
@@ -78,7 +80,7 @@ Public Class Form1
                 Curr = afile.ReadFields
                 ouch = {Integer.Parse(Curr(4)), Integer.Parse(Curr(5)), Integer.Parse(Curr(6)), Integer.Parse(Curr(7)), Integer.Parse(Curr(8))}
                 CurrPlayer = New Player(Curr(0), Curr(1), Curr(2), Curr(3), ouch, Integer.Parse(Curr(9)), Curr(10), Curr(11), Curr(12), Curr(13))
-                U11GList.Add(CurrPlayer)
+                DivisionList.Add(CurrPlayer)
             Catch ex As FileIO.MalformedLineException
                 MsgBox("Unexpected Error Occured, Contact Admin for support")
                 Stop
@@ -168,7 +170,7 @@ Public Class Form1
         Dim d As Integer = 0
         Dim ee As String = ""
         Dim thick As String
-        If box_divisions.SelectedItem.ToString = "U18" Then
+        If chk_is_u18.Checked Then
             a = sumthisup.SubItems(0).Text
             b = sumthisup.SubItems(2).Text
             c = sumthisup.SubItems(3).Text
@@ -211,12 +213,15 @@ Public Class Form1
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
         lst_players_available.Clear()
-        U11GFile = Application.StartupPath & "\" & box_divisions.SelectedItem.ToString & ".csv"
+        If DivisionFile = "" Or Coachlistpath = "" Then
+            Return
+        End If
+        'DivisionFile = Application.StartupPath & "\" & box_divisions.SelectedItem.ToString & ".csv"
         CoachList1 = New ArrayList
         CoachList2 = New ArrayList
         CoachIndex = 0
         CoachCounter = 0
-        Dim Coachlistpath As String = Application.StartupPath & "\" & box_divisions.SelectedItem.ToString & "coachlist.csv"
+        'Coachlistpath = Application.StartupPath & "\" & box_divisions.SelectedItem.ToString & "coachlist.csv"
         GetCoachList(Coachlistpath)
         CoachList1 = Shuffle1(CoachList1)
         For Each coach As String In CoachList1
@@ -225,7 +230,7 @@ Public Class Form1
         Next
 
 
-        If box_divisions.SelectedItem.ToString = "U18" Then
+        If chk_is_u18.Checked Then
             GetPlayersU18()
             lst_players_available.Columns.Add("Age", 60, HorizontalAlignment.Left)
             lst_players_available.Columns.Add("Gndr", 40, HorizontalAlignment.Left)
@@ -246,16 +251,16 @@ Public Class Form1
             lst_players_available.Columns.Add("Comments", 150, HorizontalAlignment.Left)
         End If
         Dim j As Integer = 0
-        Dim masterlist(U11GList.Count - 1) As ListViewItem
+        Dim masterlist(DivisionList.Count - 1) As ListViewItem
 
-        For j = 0 To U11GList.Count - 1
+        For j = 0 To DivisionList.Count - 1
             Dim nameme As String = ""
-            nameme = nameme & CType(U11GList(j), Player).Lastname1 & " " & CType(U11GList(j), Player).Firstname1
+            nameme = nameme & CType(DivisionList(j), Player).Lastname1 & " " & CType(DivisionList(j), Player).Firstname1
             ''lst_select.Items.Add(nameme)
             masterlist(j) = New ListViewItem
             Dim xx As Integer = 0
-            If box_divisions.SelectedItem.ToString = "U18" Then
-                For Each i As Object In CType(U11GList(j), Player).ReturnU18
+            If chk_is_u18.Checked Then
+                For Each i As Object In CType(DivisionList(j), Player).ReturnU18
                     If xx = 0 Then
                         masterlist(j).SubItems(0).Text = i
                         xx = xx + 1
@@ -264,7 +269,7 @@ Public Class Form1
                     End If
                 Next i
             Else
-                For Each i As Object In CType(U11GList(j), Player).ReturnAll
+                For Each i As Object In CType(DivisionList(j), Player).ReturnAll
                     If xx = 0 Then
                         masterlist(j).SubItems(0).Text = i
                         xx = xx + 1
@@ -276,7 +281,7 @@ Public Class Form1
 
         Next j
         lst_players_available.Items.AddRange(masterlist)
-        If box_divisions.SelectedItem.ToString = "U18" Then
+        If chk_is_u18.Checked Then
             lst_players_available.ListViewItemSorter = New ListViewItemComparer(4, SortOrder.Descending)
             lst_players_available.ListViewItemSorter = New ListViewItemComparer(1, SortOrder.Ascending)
         Else
@@ -300,7 +305,11 @@ Public Class Form1
 
     Private Sub btn_Finish_Click(sender As Object, e As EventArgs) Handles btn_Finish.Click
         'Reminder for you to get name from Dropdown list'
-        SavePath = Application.StartupPath & "\" & box_divisions.SelectedItem.ToString & "AllDone.csv"
+        Dim findFile As New SaveFileDialog
+        findFile.Filter = "Comma Delimited|*.csv"
+        findFile.Title = "Save the file"
+        findFile.ShowDialog()
+        SavePath = findFile.FileName
         For Each x As Team In CoachList2
             Dim xx As ArrayList = New ArrayList
             xx.Add(x.Coach1)
@@ -335,5 +344,30 @@ Public Class Form1
             End If
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub btn_pick_div_Click(sender As Object, e As EventArgs) Handles btn_pick_div.Click
+        Dim h As OpenFileDialog = New OpenFileDialog
+        h.Filter = "Comma Delimited|*.csv"
+        h.Title = "Select Division File"
+        h.ShowDialog()
+
+        DivisionFile = h.FileName
+
+        txt_div_main.Text = DivisionFile
+    End Sub
+
+    Private Sub btn_pick_coach_Click(sender As Object, e As EventArgs) Handles btn_pick_coach.Click
+        Dim h As OpenFileDialog = New OpenFileDialog
+        h.Filter = "Comma Delimited|*.csv"
+        h.Title = "Select Coach List File"
+        h.ShowDialog()
+
+        Coachlistpath = h.FileName
+        txt_div_coach.Text = Coachlistpath
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles chk_is_u18.CheckedChanged
+
     End Sub
 End Class

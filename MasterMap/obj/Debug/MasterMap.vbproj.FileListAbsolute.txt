@@ -20,3 +20,16 @@ D:\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.GenerateResource.Cache
 D:\burgeval\MasterMap\obj\Debug\MasterMap.exe
 D:\burgeval\MasterMap\obj\Debug\MasterMap.xml
 D:\burgeval\MasterMap\obj\Debug\MasterMap.pdb
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\bin\Debug\MasterMap.exe.config
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\bin\Debug\MasterMap.exe
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\bin\Debug\MasterMap.pdb
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\bin\Debug\MasterMap.xml
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.AssemblyReference.cache
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.SuggestedBindingRedirects.cache
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.Form1.resources
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.Resources.resources
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.GenerateResource.cache
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.vbproj.CoreCompileInputs.cache
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.exe
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.xml
+C:\Users\mcosta\Documents\Projects\burgeval\MasterMap\obj\Debug\MasterMap.pdb
